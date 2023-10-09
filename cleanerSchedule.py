@@ -54,7 +54,7 @@ def schedule_tasks():
             func(*args)
         elif isinstance(item[0], int):  # Interval-based task
             interval, unit, func, *args = item
-            # DO session IF NOT DO and then loop mode move this session after unit session 
+            # DO session IF schedule and loop after (1st) intervel move this session after unit session 
             # Calculate the time remaining until the next scheduled execution
             time_remaining = (scheduled_time - current_time).total_seconds()
 
