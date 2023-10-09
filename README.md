@@ -10,3 +10,7 @@ fileTimeProcess.py
 fileBasics.py
 
   檔案, 讀取, 寫入, 編碼, 路徑, 檔名 
+
+cleanerScheduel.py
+
+  排程, 函式, 資料夾, 路徑, 檔名, 關鍵字, 間隔, 年月日, 時分, 指定時間
