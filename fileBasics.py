@@ -57,8 +57,8 @@ myext = r".html"
 encoding = r'utf-8'
 replacements = [
     ('</div><td field=', '</div></td><td field='),
-    ('</div><tr id=dg_datagrid-row-r2-2', '</div></td></tr><tr id=dg_datagrid-row-r2-2'),
-    ('</table></div><div class=datagrid-footer', '</td></tr></tbody></table></div><div class=datagrid-footer')
+    ('</div><tr id=row', '</div></td></tr><tr id=row'),
+    ('</table></div><div class=footer', '</td></tr></tbody></table></div><div class=footer')
 ]
 outputFile = 'fireDept.html'
 outF = os.path.join(dir,outputFile)
