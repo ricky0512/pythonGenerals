@@ -2,7 +2,7 @@
 import glob
 import os
 import time
-import datetime
+from datetime import datetime, timedelta
 import schedule
 
 
@@ -45,36 +45,38 @@ def deleteFilesByPattern(path, pattern, ext):
     print(f"Kept latest file: {latest_file}")
 
 # Function to schedule tasks from the list of tuples
+# DO and then loop mode
 def schedule_tasks():
-    # for interval, unit, func, *args in tasks:
-    #     if unit == 'hour':
-    #         schedule.every(interval).hours.do(func, *args)
-    #     elif unit == 'minutes':
-    #         schedule.every(interval).minutes.do(func, *args)
-    current_time = datetime.datetime.now()
-    # print(f"current time: {current_time}")
+    current_time = scheduled_time = datetime.now()
     for item in tasks:
-        if isinstance(item[0], int):  # Interval-based task
-            interval, unit, func, *args = item
-            if unit == 'year':
-                # Schedule yearly tasks by setting them to run on a specific date each year
-                scheduled_time = current_time.replace(year=current_time.year + interval)
-                schedule.every().day.at(scheduled_time.strftime('%H:%M:%S')).do(func, *args)
-            elif unit == 'month':
-                # Schedule monthly tasks by setting them to run on a specific date each month
-                scheduled_time = current_time.replace(month=current_time.month + interval)
-                schedule.every().day.at(scheduled_time.strftime('%H:%M:%S')).do(func, *args)
-            elif unit == 'day':
-                schedule.every(interval).days.do(func, *args)
-            elif unit == 'hour':
-                schedule.every(interval).hours.do(func, *args)
-            elif unit == 'minute':
-                schedule.every(interval).minutes.do(func, *args)
-            print(f"current time: {current_time}")
-        elif item[1] == 'at' and current_time.strftime('%H:%M:%S') == item[0]:  # Time-based task
+        if item[1] == 'at':
             _, _, func, *args = item
             func(*args)
-            print(f"current time: {current_time}")
+        elif isinstance(item[0], int):  # Interval-based task
+            interval, unit, func, *args = item
+            # DO session IF NOT DO and then loop mode move this session after unit session 
+            # Calculate the time remaining until the next scheduled execution
+            time_remaining = (scheduled_time - current_time).total_seconds()
+
+            # If the time remaining is non-negative, schedule the task
+            if time_remaining >= 0:
+                schedule.every(time_remaining).seconds.do(func, *args)
+            # DO session END
+
+            # unit session
+            if unit == 'year':
+                scheduled_time = current_time.replace(year=current_time.year + interval)
+            elif unit == 'month':
+                scheduled_time = current_time.replace(month=current_time.month + interval)
+            elif unit == 'day':
+                scheduled_time = current_time + timedelta(days=interval)
+            elif unit == 'hour':
+                scheduled_time = current_time + timedelta(hours=interval)
+            elif unit == 'minute':
+                scheduled_time = current_time + timedelta(minutes=interval)
+            else:
+                continue  # Skip invalid units
+            # unit session END
 
 # Define the schedule tasks in a list of tuples
 cleanDir = r'C:\path\somewhere'
