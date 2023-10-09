@@ -14,3 +14,6 @@ cleanerScheduel.py
 
 generateFiles.py
   #排程, #函式, #資料夾, #路徑, #檔名, #關鍵字
+
+myRandom.py
+  #隨機, #亂數
