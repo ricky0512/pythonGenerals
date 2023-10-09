@@ -1,0 +1,36 @@
+# 排程, 函式, 資料夾, 路徑, 檔名, 關鍵字
+import os
+import datetime
+
+def generate_files(directory, pattern, ext, num_files, second_shift=0):
+    current_time = datetime.datetime.now()
+    file_list = []
+
+    for i in range(num_files):
+        # Generate a filename based on the pattern and current timestamp
+        timestamp = (current_time + datetime.timedelta(seconds=second_shift)).strftime('%Y_%m_%d %H_%M_%S')
+        filename = f"{pattern}_{timestamp}{ext}"
+        file_path = os.path.join(directory, filename)
+
+        # Create an empty file at the specified path
+        with open(file_path, 'w') as file:
+            pass
+
+        file_list.append(file_path)
+
+        # Increment the second_shift for the next file
+        second_shift += 1
+
+    return file_list
+
+# Example usage:
+directory = r'C:\Users\ricky\Downloads'
+pattern = 'AAAA'
+ext = '.txt'
+num_files = 5
+second_shift = 0  # Specify the initial second shift
+
+file_paths = generate_files(directory, pattern, ext, num_files, second_shift)
+print(f"Generated {num_files} files:")
+for file_path in file_paths:
+    print(file_path)
