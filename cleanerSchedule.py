@@ -9,6 +9,7 @@ import schedule
 def deleteFilesExceptLatest(path, pattern, ext):
     # Create a list of all files in the directory matching the pattern and extension
     files = glob.glob(os.path.join(path, f"*{pattern}*{ext}"))
+    # print(f"files: {files}")
     
     # Ensure there are files to delete
     if len(files) <= 1:
@@ -29,12 +30,14 @@ def deleteFilesExceptLatest(path, pattern, ext):
 def deleteFilesByPattern(path, pattern, ext):
     # Create a list of all files in the directory matching the pattern and extension
     files = glob.glob(os.path.join(path, f"*{pattern}*{ext}"))
-    
+    # print(f"files: {files}")
+
     # Ensure there are files to delete
     if len(files) <= 0:
         print("No files to delete or only one file found. Nothing to do.")
         return
     
+    latest_file = files[0]
     for file in files:
         os.remove(file)
         print(f"Deleted: {file}")
@@ -49,6 +52,7 @@ def schedule_tasks():
     #     elif unit == 'minutes':
     #         schedule.every(interval).minutes.do(func, *args)
     current_time = datetime.datetime.now()
+    # print(f"current time: {current_time}")
     for item in tasks:
         if isinstance(item[0], int):  # Interval-based task
             interval, unit, func, *args = item
@@ -64,35 +68,37 @@ def schedule_tasks():
                 schedule.every(interval).days.do(func, *args)
             elif unit == 'hour':
                 schedule.every(interval).hours.do(func, *args)
-            elif unit == 'minutes':
+            elif unit == 'minute':
                 schedule.every(interval).minutes.do(func, *args)
+            print(f"current time: {current_time}")
         elif item[1] == 'at' and current_time.strftime('%H:%M:%S') == item[0]:  # Time-based task
             _, _, func, *args = item
             func(*args)
-
-# For debug just generate some files .......
+            print(f"current time: {current_time}")
 
 # Define the schedule tasks in a list of tuples
+cleanDir = r'C:\path\somewhere'
+pattern = f'keyword'
+ext = r'.txt'
 tasks = [
-    (1, 'hour', deleteFilesExceptLatest, '/path/to/dir1', 'pattern1', '.ext'),
-    (10, 'minutes', deleteFilesExceptLatest, '/path/to/dir1', 'pattern1', '.ext'),
-    (1, 'hour', deleteFilesByPattern, '/path/to/dir2', 'pattern3', '.ext'),
-    ('12:00:00', 'at', deleteFilesExceptLatest, '/path/to/dir1', 'pattern2', '.ext')
+    ('11:57:00', 'at', deleteFilesExceptLatest, cleanDir, pattern, ext)
 ]
 
-dir = r"D:\shomewhere\path"
-pattern = "AAA"
-ext = '.txt'
-num_files = 3
+
 
 # Run the scheduler in an infinite loop
 while True:    
     # Schedule the tasks to run at different intervals
     # For hourly task, use every() with hours=1
-    schedule.every(1).hours.do(deleteFilesExceptLatest('/path/to/dir1', 'pattern1', '.ext'))
+
+    # Works 
+    # schedule.every(1).hours.do(deleteFilesExceptLatest('C:\path\somewhere', 'keyword', '.txt'))
+    # ('1', 'minute', deleteFilesExceptLatest, cleanDir, pattern, ext)
+    # schedule.every(1).minutes.do(deleteFilesExceptLatest(cleanDir, pattern, ext))
+    # schedule.every(1).minutes.do(deleteFilesByPattern(cleanDir, pattern, ext))
 
     # For a task every 12 hours, use every() with hours=12
-    schedule.every(12).hours.do(deleteFilesByPattern('/path/to/dir1', 'pattern1', '.ext'))
+    # schedule.every(12).hours.do(deleteFilesByPattern(cleanDir, pattern, ext))
 
     schedule_tasks()
     schedule.run_pending()
