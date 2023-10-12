@@ -48,19 +48,32 @@ def deleteFilesByPattern(path, pattern, ext):
 # DO and then loop mode
 def schedule_tasks():
     current_time = scheduled_time = datetime.now()
+    # today = date.today()
+    # print(f"current time: {current_time}")
     for item in tasks:
+        # print(f"item: {item}")
         if item[1] == 'at':
-            _, _, func, *args = item
-            func(*args)
+            # control task with time
+            at_time, _, func, *args = item
+            at_time = datetime.strptime(at_time, '%H:%M:%S')
+            # at_time = datetime.combine(date.today(), datetime.min.time())
+            at_datetime = current_time.replace(hour=at_time.hour, minute=at_time.minute, second=at_time.second)
+            # print(f"at time: {at_datetime}")
+            if current_time >= at_datetime:
+                func(*args)
+                print(f"current time: at {current_time} runs {func}")
+                
         elif isinstance(item[0], int):  # Interval-based task
             interval, unit, func, *args = item
             # DO session IF schedule and loop after (1st) intervel move this session after unit session 
             # Calculate the time remaining until the next scheduled execution
             time_remaining = (scheduled_time - current_time).total_seconds()
+            # print(f"current time: {current_time} (time remaining: {time_remaining}) intervel runs {func}")
 
             # If the time remaining is non-negative, schedule the task
             if time_remaining >= 0:
                 schedule.every(time_remaining).seconds.do(func, *args)
+                # print(f"current time: {current_time} intervel runs2 {func}")
             # DO session END
 
             # unit session
