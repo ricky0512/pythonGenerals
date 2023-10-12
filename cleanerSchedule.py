@@ -108,7 +108,7 @@ while True:
 
     # Works 
     # schedule.every(1).hours.do(deleteFilesExceptLatest('C:\path\somewhere', 'keyword', '.txt'))
-    # ('1', 'minute', deleteFilesExceptLatest, cleanDir, pattern, ext)
+    # (1, 'minute', deleteFilesExceptLatest, cleanDir, pattern, ext)
     # schedule.every(1).minutes.do(deleteFilesExceptLatest(cleanDir, pattern, ext))
     # schedule.every(1).minutes.do(deleteFilesByPattern(cleanDir, pattern, ext))
 
