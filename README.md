@@ -21,3 +21,5 @@ myRandom.py
 fixMalTaggedHtml.py
   #NOT closed, #html, #tags, #非標準, #未關閉, #標籤
   
+winautoBasics.py
+  #瀏覽器, #切換, #頁籤, #重整, #網頁
