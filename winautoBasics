@@ -1,0 +1,66 @@
+# works on multiple opened browser background and target tab is foreground in each window
+# 每個目標頁籤都用1個獨立的瀏覽器開啟, 也就是說每1個Firefox裏只開1個要控制的那個頁籤
+import time
+from pywinauto.keyboard import send_keys
+from pywinauto import Application
+import pygetwindow as gw
+import psutil
+import win32gui
+
+def bring_firefox_to_front(partial_title):
+    firefox_windows = [window for window in gw.getWindowsWithTitle(partial_title) if "MozillaWindowClass" in win32gui.GetClassName(window._hWnd)]
+    
+    for window in firefox_windows:
+        try:
+            window.activate()
+            return True
+        except Exception as e:
+            print(f"Error activating Firefox window: {e}")
+    return False
+
+def switch_to_firefox_tab(tab_number):
+    try:
+        # Send Ctrl+number key combination to switch tabs
+        send_keys(f"^{tab_number}")
+        # send_keys(f"^R")  #不行！會中斷整個程序哦
+    except Exception as e:
+        print(f"Error switching to Firefox tab: {e}")
+
+def refresh_firefox():
+    try:
+        # Send Ctrl+number key combination to switch tabs
+        send_keys(f"^R")
+    except Exception as e:
+        print(f"Error switching to Firefox tab: {e}")
+
+def return_to_last_firefox():
+    try:
+        send_keys(f"%{TAB}")
+    except Exception as e:
+        print(f"Error switching to Firefox tab: {e}")
+
+if __name__ == "__main__":
+    partial_title1 = "PChome"
+    partial_title2 = "Google"
+
+    # Bring the first Firefox window with a partial title containing 'google' to the front
+    if bring_firefox_to_front(partial_title1):
+        # Wait for a moment to ensure the window is focused
+        time.sleep(1)
+
+        # Switch to the desired tab within the focused Firefox window
+        switch_to_firefox_tab(1)
+        
+
+    # Bring the second Firefox window with a partial title containing 'PChome' to the front
+    if bring_firefox_to_front(partial_title2):
+        # Wait for a moment to ensure the window is focused
+        time.sleep(1)
+
+        # Switch to the desired tab within the focused Firefox window
+        switch_to_firefox_tab(1)
+        refresh_firefox()
+        time.sleep(5)
+        return_to_last_firefox()    
+        if bring_firefox_to_front(partial_title1):
+            refresh_firefox()
