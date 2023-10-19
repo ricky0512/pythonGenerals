@@ -23,3 +23,6 @@ fixMalTaggedHtml.py
   
 winautoBasics.py
   #瀏覽器, #切換, #頁籤, #重整, #網頁
+
+runOtherPython.py
+  #透過python, #執行, #python
