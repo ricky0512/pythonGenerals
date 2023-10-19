@@ -26,3 +26,6 @@ winautoBasics.py
 
 runOtherPython.py
   #透過python, #執行, #python
+
+termInFolder.py
+  #資料夾, #關鍵字, #檔案名稱
