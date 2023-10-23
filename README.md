@@ -29,3 +29,8 @@ runOtherPython.py
 
 termInFolder.py
   #資料夾, #關鍵字, #檔案名稱
+
+openMonitorSites.py
+  #瀏覽器, #4分割, #監看, #網頁
+
+
