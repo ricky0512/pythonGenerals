@@ -33,4 +33,9 @@ termInFolder.py
 openMonitorSites.py
   #瀏覽器, #4分割, #監看, #網頁
 
+pyautoguiMouse.py 
+  #滑鼠, #位置, #坐標, #X,Y
+
+getScreeninfoBasics.py
+  #螢幕, #長寬, #X,Y
 
