@@ -29,13 +29,21 @@ def switch_to_firefox_tab(tab_number):
 def refresh_firefox():
     try:
         # Send Ctrl+number key combination to switch tabs
-        send_keys(f"^R")
+        send_keys("^R")
     except Exception as e:
         print(f"Error switching to Firefox tab: {e}")
 
+def saveWithSingleFile():
+    # need sigleFile extension for browser
+    try:
+        # Send Ctrl+Shift+Y activate file saving
+        send_keys("^+Y")
+    except Exception as e:
+        print(f"Error saving file with singleFile: {e}")
+
 def return_to_last_firefox():
     try:
-        send_keys(f"%{TAB}")
+        send_keys("%{TAB}")
     except Exception as e:
         print(f"Error switching to Firefox tab: {e}")
 
