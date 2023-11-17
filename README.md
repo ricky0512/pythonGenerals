@@ -33,6 +33,9 @@ termInFolder.py
 openMonitorSites.py
   #瀏覽器, #4分割, #監看, #網頁
 
+seleniumBasics.py
+  #瀏覽器, #爬網, #存檔
+
 pyautoguiMouse.py 
   #滑鼠, #位置, #坐標, #X,Y
 
