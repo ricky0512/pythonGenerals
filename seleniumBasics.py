@@ -44,7 +44,8 @@ def capture_website_content(site_info, userAgentString, headless=True, output_fo
 
         # 整個網頁存檔
         # 指定存檔資料夾
-        output_path = os.path.join(output_folder, f"{site_info['siteName']}{text_value}.html")
+        siteName = site_info['siteName'].split('(')[0].strip()
+        output_path = os.path.join(output_folder, f"{siteName}{text_value}.html")
         with open(output_path, "w", encoding="utf-8") as file:
             file.write(driver.page_source)
 
