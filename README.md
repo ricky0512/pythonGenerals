@@ -42,3 +42,7 @@ pyautoguiMouse.py
 getScreeninfoBasics.py
   #螢幕, #長寬, #X,Y
 
+pandasBasics.py
+  保持 欄位 順序 新增 資料
+
+
