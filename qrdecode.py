@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# 讀取 QRcode 圖的內容，自動偵測內容的編碼
+# 讀取 QRcode 圖檔的內容，自動偵測內容的編碼
 from pyzbar.pyzbar import decode
 from PIL import Image
 import chardet
