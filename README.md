@@ -43,6 +43,11 @@ getScreeninfoBasics.py
   #螢幕, #長寬, #X,Y
 
 pandasBasics.py
-  保持 欄位 順序 新增 資料
+  #保持, #欄位, #順序, #新增, #資料
 
+qrcodeGen.py
+  #產生, #QRCode, #QR Code, #圖檔, #可中文
+
+qrdecode.py
+  #讀取, #QRCode, #QR Code, #內容, #可中文
 
