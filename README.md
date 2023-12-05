@@ -51,3 +51,5 @@ qrcodeGen.py
 qrdecode.py
   #讀取, #QRCode, #QR Code, #內容, #可中文
 
+merge2Df.py
+  #merge 2 dataframe, counts and percentage
