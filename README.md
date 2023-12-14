@@ -56,3 +56,8 @@ merge2Df.py
 
 writeExcelBySheetAndLocation.py
   #讀取 input, output 保留 output 原本的欄位資料 把 input 的資料從 B2 蓋過去, input 和 output 的欄位數並不相同
+
+pandasToExcelWithStartLocation.py
+  #輸出, #工作表, #位置
+  writeExcelBySheetAndLocation.py 太複雜，現在這個才是我原本想要的，將資料輸出到excel中，直接用參數指定要輸出資料集的起啟位置
+
