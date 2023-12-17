@@ -61,3 +61,6 @@ pandasToExcelWithStartLocation.py
   #輸出, #工作表, #位置
   writeExcelBySheetAndLocation.py 太複雜，現在這個才是我原本想要的，將資料輸出到excel中，直接用參數指定要輸出資料集的起啟位置
 
+openpyxlCopyRangeAndPaste.py
+  #複製 excel 範圍資料到 另一個範圍
+  #座標系統必須轉整數
