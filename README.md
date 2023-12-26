@@ -64,3 +64,6 @@ pandasToExcelWithStartLocation.py
 openpyxlCopyRangeAndPaste.py
   #複製 excel 範圍資料到 另一個範圍
   #座標系統必須轉整數
+
+watchPath.bat
+  #for,  #watchPath.py, #監看,  #資料夾  
