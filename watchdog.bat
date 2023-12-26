@@ -1,7 +1,7 @@
 @echo off
 setlocal
 
-rem 每次打執行的指定太麻煩了設一個批次檔來處理 設定資料夾 mydir 變數
+rem 每次打執行的指令太長太麻煩了，設一個批次檔來處理 設定資料夾 mydir 變數
 set "mydir=D:\anaconda\envs\ems"
 set "watchdog=somewhere\watcPath.py"
 set "watchDir=C:\somewhere\dir"
