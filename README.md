@@ -67,3 +67,6 @@ openpyxlCopyRangeAndPaste.py
 
 watchPath.bat
   #for,  #watchPath.py, #監看,  #資料夾  
+
+beep.py
+  #警示,  #聲音,  #alert
