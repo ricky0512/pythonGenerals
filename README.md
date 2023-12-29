@@ -70,3 +70,6 @@ watchPath.bat
 
 beep.py
   #警示,  #聲音,  #alert
+
+pyenv.bat
+  #批次, #虛擬環境, #python 腳本
